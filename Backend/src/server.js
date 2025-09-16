@@ -1,10 +1,13 @@
 import express from "express";
+import dotenv from "dotenv";
+import cors from "cors"
+
 import notesRoute from "./routes/notesRoute.js";
 import { connectDB } from "./config/db.js";
-import dotenv from "dotenv";
 import ratelimiter from "./middleware/ratelimiter.js";
 dotenv.config();
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use(ratelimiter);
 app.get("/",(req,res)=>{

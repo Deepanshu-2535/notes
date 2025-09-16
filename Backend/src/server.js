@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 connectDB();
 const app = express();
+app.use(express.json());
 app.listen(5001,() =>{
     console.log("Server started");
 })
@@ -12,4 +13,3 @@ app.get("/",(req,res)=>{
     res.json({message:"Welcome to the home page"})
 })
 app.use("/notes",notesRoute);
-

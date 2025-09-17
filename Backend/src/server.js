@@ -1,21 +1,35 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors"
+import path from "path"
 
 import notesRoute from "./routes/notesRoute.js";
 import { connectDB } from "./config/db.js";
 import ratelimiter from "./middleware/ratelimiter.js";
 dotenv.config();
 const app = express();
-app.use(cors());
+const __dirname = path.resolve();
+
+if(process.env.NODE_ENV!=='production'){
+    app.use(cors());
+}
+
 app.use(express.json());
 app.use(ratelimiter);
-app.get("/",(req,res)=>{
-    res.json({message:"Welcome to the home page"})
-})
+
 app.use("/notes",notesRoute);
+
+if(process.env.NODE_ENV==='production'){
+    app.use(express.static(path.join(__dirname,"../Frontend/dist")))
+
+    app.get("*",(req,res)=>{
+        res.sendFile(path.join(__dirname,"../Frontend","dist","index.html"))
+    })
+}
+
 connectDB().then(()=>{
     app.listen(5001,() =>{
         console.log("Server started");
     })
 })
+

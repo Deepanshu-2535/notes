@@ -14,6 +14,7 @@
     "axios": "^1.12.2",
     "daisyui": "^5.1.12",
     "lucide-react": "^0.544.0",
+    "notes-app": "file:..",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-hot-toast": "^2.6.0",

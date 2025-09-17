@@ -18,7 +18,7 @@ if(process.env.NODE_ENV!=='production'){
 app.use(express.json());
 app.use(ratelimiter);
 
-app.use("/notes",notesRoute);
+app.use("/api/notes",notesRoute);
 
 if(process.env.NODE_ENV==='production'){
     app.use(express.static(path.join(__dirname,"../Frontend/dist")))
@@ -30,7 +30,7 @@ if(process.env.NODE_ENV==='production'){
 
 connectDB().then(()=>{
     app.listen(PORT,() =>{
-        console.log("Server started");
+        console.log("Server started on port",PORT);
     })
 })
 

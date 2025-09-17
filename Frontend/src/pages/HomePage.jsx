@@ -1,5 +1,5 @@
 import React from 'react' 
-import axios from "axios"
+import api from "../lib/axios";
 import { useState,useEffect } from 'react';
 import {toast} from "react-hot-toast"
 
@@ -14,7 +14,7 @@ const HomePage = () => {
   useEffect(()=>{
     const fetchNotes = async()=>{
       try{
-        const res = await axios.get("http://localhost:5001/notes");
+        const res = await api.get("/notes");
         setNotes(res.data);
         console.log(res.data);
         setIsRateLimited(false);

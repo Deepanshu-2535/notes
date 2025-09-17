@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from "../lib/axios";
 import { LoaderIcon,ArrowLeftIcon,Trash2Icon } from 'lucide-react';
 import { Link } from 'react-router';
 import React, { useEffect, useState } from 'react'
@@ -14,7 +14,7 @@ const NoteDetailPage = () => {
   useEffect(()=>{
     async function fetchDetails() {
       try{
-        const res = await axios.get(`http://localhost:5001/notes/${id}`);
+        const res = await api.get(`/notes/${id}`);
         setNote(res.data);
       }
       catch(error){
@@ -30,7 +30,7 @@ const NoteDetailPage = () => {
   const handleDelete = async ()=>{
     if(!window.confirm("Are you sure ?")){return;}
     try{
-      await axios.delete(`http://localhost:5001/notes/${id}`);
+      await api.delete(`/notes/${id}`);
       toast.success("Note Successfully deleted");
       navigate('/');
     }
@@ -46,7 +46,7 @@ const NoteDetailPage = () => {
     }
     setSaving(true);
     try{
-      await axios.put(`http://localhost:5001/notes/${id}`,{title:note.title , content:note.content});
+      await api.put(`/notes/${id}`,{title:note.title , content:note.content});
       toast.success("Note Successfully Updated");
       navigate('/');
     }

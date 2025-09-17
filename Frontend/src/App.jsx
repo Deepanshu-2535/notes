@@ -6,12 +6,14 @@ import NoteDetailPage from './pages/NoteDetailPage'
 
 const App = () => {
   return (
-    <div>
-      <Routes>
-        <Route path='/' element={<HomePage/>}/>
-        <Route path='/create' element={<CreatePage/>}/>
-        <Route path='/note/:id' element={<NoteDetailPage/>}/>
-      </Routes>
+    <div className='relative h-full w-full'>
+      <div className='absolute inset-0 -z-10 h-full w-full items-center'>
+        <Routes>
+          <Route path='/' element={<HomePage/>}/>
+          <Route path='/create' element={<CreatePage/>}/>
+          <Route path='/note/:id' element={<NoteDetailPage/>}/>
+        </Routes>
+      </div>
     </div>
   )
 }

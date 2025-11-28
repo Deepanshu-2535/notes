@@ -16,7 +16,7 @@ if(process.env.NODE_ENV!=='production'){
 }
 
 app.use(express.json());
-
+app.use(ratelimiter);
 app.use("/api/notes",notesRoute);
 
 if(process.env.NODE_ENV==='production'){

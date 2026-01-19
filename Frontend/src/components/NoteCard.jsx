@@ -1,13 +1,12 @@
 import { PenSquareIcon, Trash2Icon } from 'lucide-react'
 import React from 'react'
-import { Link, useNavigate } from 'react-router'
+import { Link } from 'react-router'
 import {formatDate} from '../lib/util.js'
 import api from "../lib/axios";
 import toast from 'react-hot-toast'
 
 
 const NoteCard = ({note,setNotes}) => {
-    const navigate = useNavigate();
     const handleDelete = async(e,id)=>{
         e.preventDefault();
         if(!window.confirm("Are you sure ?")){return}
